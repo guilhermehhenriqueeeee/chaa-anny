@@ -555,8 +555,8 @@ function close() {
         document.getElementById('paymentSection').style.display = 'none';
         modalBody.innerHTML = '';
         // Reset radio button to default
-        const creditRadio = document.querySelector('input[name="payment"][value="credit"]');
-        if(creditRadio) creditRadio.checked = true;
+        const mpRadio = document.querySelector('input[name="payment"]');
+        if(mpRadio) mpRadio.checked = true;
     }, 300);
 }
 
@@ -574,12 +574,8 @@ confirmBtn.addEventListener('click', () => {
     // Redireciona para o link do Mercado Pago fornecido
     window.open('https://link.mercadopago.com.br/jessicacarolinaalves', '_blank');
 
-    // Mark item as purchased (only non-fraldas)
     if (currentModalGiftId !== null) {
-        const gift = gifts.find(g => g.id === currentModalGiftId);
-        if (gift && gift.category !== 'fraldas') {
-            markPurchased(currentModalGiftId);
-        }
+        markPurchased(currentModalGiftId);
         currentModalGiftId = null;
     }
 
