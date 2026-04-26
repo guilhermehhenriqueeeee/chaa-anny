@@ -74,7 +74,7 @@ const firebaseConfig = {
     projectId: "cha-da-anny",
     storageBucket: "cha-da-anny.firebasestorage.app",
     messagingSenderId: "563640741317",
-    appId: "1:563640741317:web:5e1c5fd198419c5d28afac"
+    appId: "1:563640741317:web:f9ce58c8b4947b0f28afac"
 };
 
 // Initialize Firebase
