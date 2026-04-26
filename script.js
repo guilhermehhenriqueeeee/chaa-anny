@@ -167,8 +167,7 @@ function renderGuests() {
             </div>
             <div class="guest-status">
                 ${confirmed
-                    ? `<span class="rsvp-badge rsvp-yes"><i class="fa-solid fa-circle-check"></i> Confirmada</span>
-                       <button class="btn-undo" onclick="openUnconfirmModal('${g.id}')">Desfazer</button>`
+                    ? `<span class="rsvp-badge rsvp-yes"><i class="fa-solid fa-circle-check"></i> Confirmada</span>`
                     : `<span class="rsvp-badge rsvp-no"><i class="fa-regular fa-clock"></i> Aguardando</span>
                        <button class="btn-confirm-rsvp" onclick="openRsvpModal('${g.id}')">Confirmar</button>`
                 }
@@ -220,28 +219,7 @@ function openRsvpModal(id) {
     document.getElementById('rsvpModal').classList.add('active');
 }
 
-function openUnconfirmModal(id) {
-    const guest = guests.find(g => g.id === id);
-    if (!guest) return;
-    rsvpTargetId = id;
 
-    document.getElementById('rsvpModalTitle').textContent = 'Cancelar Confirmação';
-    document.getElementById('rsvpModalBody').innerHTML = `
-        <p>Tem certeza que deseja <strong>remover a confirmação</strong> de presença de <strong>${guest.name}</strong>?</p>
-        <p style="margin-top:0.75rem; color: var(--text-muted);">Você poderá confirmar novamente a qualquer momento.</p>
-    `;
-
-    const confirmBtn = document.getElementById('confirmRsvpBtn');
-    confirmBtn.style.background = 'linear-gradient(135deg, #e57373, #c0392b)';
-    confirmBtn.textContent = '✗ Remover Confirmação';
-    confirmBtn.onclick = () => {
-        cancelRsvp(rsvpTargetId);
-        closeRsvpModal();
-        // renderGuests() is now triggered automatically by Firebase onValue
-    };
-
-    document.getElementById('rsvpModal').classList.add('active');
-}
 
 function closeRsvpModal() {
     document.getElementById('rsvpModal').classList.remove('active');
