@@ -551,7 +551,7 @@ function openModal(id) {
     currentModalGiftId = id;
 
     modalBody.innerHTML = `
-        <p>Você está prestes a escolher este item para a Anny. Para confirmar e ver as opções de entrega/pix, clique abaixo.</p>
+        <p>Você está prestes a escolher este item para a Anny. Para confirmar e realizar o pagamento, clique abaixo.</p>
         <div class="selected-gift">
             <div class="selected-gift-icon">
                 <i class="fa-solid ${gift.icon}"></i>
@@ -575,9 +575,9 @@ function close() {
     setTimeout(() => {
         document.getElementById('paymentSection').style.display = 'none';
         modalBody.innerHTML = '';
-        // Reset radio button to default PIX
-        const pixRadio = document.querySelector('input[name="payment"][value="pix"]');
-        if(pixRadio) pixRadio.checked = true;
+        // Reset radio button to default
+        const creditRadio = document.querySelector('input[name="payment"][value="credit"]');
+        if(creditRadio) creditRadio.checked = true;
     }, 300);
 }
 
@@ -592,15 +592,8 @@ window.addEventListener('click', (e) => {
 });
 
 confirmBtn.addEventListener('click', () => {
-    // Get selected payment method
-    const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
-
-    if (paymentMethod === 'pix') {
-        alert('Você escolheu pagar via PIX! Na versão final, abrirá a tela com o QR Code ou Chave PIX.');
-    } else {
-        // Redireciona para o link do Mercado Pago fornecido
-        window.open('https://link.mercadopago.com.br/jessicacarolinaalves', '_blank');
-    }
+    // Redireciona para o link do Mercado Pago fornecido
+    window.open('https://link.mercadopago.com.br/jessicacarolinaalves', '_blank');
 
     // Mark item as purchased (only non-fraldas)
     if (currentModalGiftId !== null) {
